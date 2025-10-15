@@ -133,7 +133,6 @@ async batchRevoke(deviceIds) {
 - `evoke-full-implementation.js` - Complete EVOKE with proofs
 
 ### Documentation
-- `ECC_IMPLEMENTATION_REPORT.md` - ECC implementation details
 - `EVOKE_IMPLEMENTATION_COMPLETE.md` - This document
 
 ## Verification Commands

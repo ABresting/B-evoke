@@ -40,7 +40,6 @@ b-evoke/
 ├── 📄 README.md                          # Quick start guide
 ├── 📄 CONTEXT_SUMMARY.md                 # Project context & history
 ├── 📄 EVOKE_IMPLEMENTATION_COMPLETE.md   # Full EVOKE implementation
-├── 📄 ECC_IMPLEMENTATION_REPORT.md       # ECC accumulator details
 ├── 📄 TECHNICAL_EXPLANATION.md           # Conceptual explanation
 ├── 📄 PROJECT_ACHIEVEMENT_REPORT.md      # Project achievements
 ├── 📄 PROJECT_STRUCTURE.md               # This file
@@ -74,11 +73,10 @@ b-evoke/
   - **Gas Optimization** (3 tests): Registration, revocation, verification gas costs
   - **State Consistency** (2 tests): Accumulator consistency, statistics accuracy
 
-### Documentation (7 files)
+### Documentation (6 files)
 - `README.md` - Quick start and overview
 - `CONTEXT_SUMMARY.md` - Project context and session history
 - `EVOKE_IMPLEMENTATION_COMPLETE.md` - Full EVOKE details
-- `ECC_IMPLEMENTATION_REPORT.md` - ECC implementation specifics
 - `TECHNICAL_EXPLANATION.md` - Conceptual guide for engineers
 - `PROJECT_ACHIEVEMENT_REPORT.md` - Complete project history
 - `PROJECT_STRUCTURE.md` - This organizational guide
@@ -105,12 +103,12 @@ The following files were removed during consolidation for a cleaner codebase:
 - **Smart Contracts**: 2 Solidity files
 - **Solidity Tests**: 1 test file (29 tests total)
 - **JavaScript Tests**: 2 files in root (test-evoke.js, verify.sh)
-- **Documentation**: 7 markdown files
+- **Documentation**: 6 markdown files
 - **Examples**: 1 JSON proof file
 - **Configuration**: 1 TOML file
 - **Deployment**: 1 deployment script
 
-**Total Core Files**: 16 files (excluding compiled artifacts and dependencies)
+**Total Core Files**: 15 files (excluding compiled artifacts and dependencies)
 
 ## Key Characteristics
 

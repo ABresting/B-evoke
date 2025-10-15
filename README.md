@@ -84,7 +84,6 @@ b-evoke/
 ├── README.md                             # This file
 ├── CONTEXT_SUMMARY.md                    # Project context
 ├── EVOKE_IMPLEMENTATION_COMPLETE.md      # Full EVOKE details
-├── ECC_IMPLEMENTATION_REPORT.md          # ECC documentation
 ├── TECHNICAL_EXPLANATION.md              # How it works
 ├── PROJECT_ACHIEVEMENT_REPORT.md         # Project history
 └── PROJECT_STRUCTURE.md                  # File organization
@@ -107,9 +106,6 @@ npx snarkjs r1cs info circuits/evoke/evoke_membership_simple.r1cs
 ```bash
 # Run all 29 Solidity tests
 ~/.foundry/bin/forge test --via-ir
-
-# Run specific test file
-~/.foundry/bin/forge test --via-ir --match-contract B_Evoke_Extended_Tests
 ```
 
 ## What Makes This Special?
@@ -138,7 +134,6 @@ npx snarkjs r1cs info circuits/evoke/evoke_membership_simple.r1cs
 ## Documentation
 
 - `EVOKE_IMPLEMENTATION_COMPLETE.md` - Full implementation details
-- `ECC_IMPLEMENTATION_REPORT.md` - ECC accumulator documentation
 - `TECHNICAL_EXPLANATION.md` - How everything works
 - `PROJECT_ACHIEVEMENT_REPORT.md` - Development journey
 
