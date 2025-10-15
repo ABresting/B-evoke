@@ -1,0 +1,25 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["node_modules", "lib"]
+solc_version = "0.8.20"
+optimizer = true
+optimizer_runs = 200
+
+# Remappings
+remappings = [
+    "@openzeppelin/=node_modules/@openzeppelin/",
+    "forge-std/=lib/forge-std/src/"
+]
+
+# Testing
+test = "test"
+gas_reports = ["B_Evoke_Registry"]
+fuzz = { runs = 256 }
+verbosity = 2
+
+# Network
+[rpc_endpoints]
+localhost = "http://127.0.0.1:8545"
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
