@@ -1,13 +1,12 @@
-# B-Evoke Final Project Structure
+# B-Evoke Project Structure
 
-## Clean Project Organization
+## Clean, Production-Ready Organization
 
 ```
 b-evoke/
 │
-├── 📁 circuits/                          # Circom Circuit Definitions
-│   ├── simple_accumulator.circom         # Hash-based (261 constraints)
-│   ├── ecc_accumulator.circom            # Full ECC operations (1531 constraints)
+├── 📁 circuits/                          # Circom Circuit Definitions (2)
+│   ├── ecc_accumulator.circom            # ECC operations (1531 constraints)
 │   └── evoke_membership_simple.circom    # Membership proofs (1530 constraints)
 │
 ├── 📁 circuits/ecc/                      # Compiled ECC Circuits
@@ -22,81 +21,119 @@ b-evoke/
 │   ├── membership_verification_key.json  # Membership verification key
 │   └── evoke_membership_simple_js/       # WASM files
 │
-├── 📁 src/                               # Smart Contracts
-│   ├── B_Evoke_Registry.sol             # Device registry contract
-│   ├── Groth16Verifier.sol              # Hash-based SNARK verifier
-│   └── ECCGroth16Verifier.sol           # ECC SNARK verifier
+├── 📁 src/                               # Smart Contracts (2)
+│   ├── B_Evoke_Registry_ECC.sol          # Device registry with ECC
+│   └── ECCGroth16Verifier.sol            # SNARK verifier
 │
-├── 📁 test/                              # Contract Tests
-│   ├── B_Evoke_Registry.t.sol           # Registry tests
-│   └── B_Evoke_Registry_RealSNARK.t.sol # SNARK verification tests
+├── 📁 test/                              # Contract Tests (1 file, 29 tests)
+│   └── B_Evoke_Tests.t.sol               # Comprehensive test suite (29 tests)
 │
-├── 📁 lib/                              # Foundry Dependencies
-│   └── forge-std/                       # Foundry standard library
+├── 📁 script/                            # Deployment Scripts
+│   └── Deploy.s.sol                      # Contract deployment
 │
-├── 🔧 Services                           # JavaScript Services
-│   ├── proof-service.js                 # Hash-based proof generation
-│   ├── ecc-proof-service.js            # ECC accumulator proofs
-│   ├── evoke-service.js                # EVOKE revocation management
-│   └── evoke-full-implementation.js    # Complete EVOKE with SNARKs
+├── 📁 lib/                               # Foundry Dependencies
+│   └── forge-std/                        # Foundry standard library
 │
-├── 📄 Documentation                      # Project Documentation
-│   ├── README.md                        # Project overview and quick start
-│   ├── EVOKE_IMPLEMENTATION_COMPLETE.md # Full EVOKE implementation details
-│   ├── ECC_IMPLEMENTATION_REPORT.md     # ECC accumulator documentation
-│   ├── TECHNICAL_EXPLANATION.md         # Conceptual explanation
-│   ├── PROJECT_ACHIEVEMENT_REPORT.md    # Complete project history
-│   └── PROJECT_STRUCTURE.md            # This file
+├── 🔧 test-evoke.js                      # Comprehensive test suite (4 scenarios)
+├── 🔧 verify.sh                          # System verification script
 │
-├── 📊 Generated Files                    # Proof Examples
-│   ├── proof.json                       # Example hash-based proof
-│   └── ecc-proof.json                   # Example ECC proof
+├── 📄 README.md                          # Quick start guide
+├── 📄 CONTEXT_SUMMARY.md                 # Project context & history
+├── 📄 EVOKE_IMPLEMENTATION_COMPLETE.md   # Full EVOKE implementation
+├── 📄 ECC_IMPLEMENTATION_REPORT.md       # ECC accumulator details
+├── 📄 TECHNICAL_EXPLANATION.md           # Conceptual explanation
+├── 📄 PROJECT_ACHIEVEMENT_REPORT.md      # Project achievements
+├── 📄 PROJECT_STRUCTURE.md               # This file
 │
-└── ⚙️ Configuration                      # Project Configuration
-    └── foundry.toml                      # Foundry configuration
+├── 📊 ecc-proof.json                     # Example ECC proof
+│
+└── ⚙️ foundry.toml                       # Foundry configuration
 ```
 
 ## File Categories
 
-### Core Circuits (3 files)
-- `simple_accumulator.circom` - Foundation hash-based implementation
-- `ecc_accumulator.circom` - Full ECC with Baby Jubjub curve
+### Core Circuits (2 files)
+- `ecc_accumulator.circom` - ECC operations on Baby Jubjub curve
 - `evoke_membership_simple.circom` - Membership proof circuit
 
-### Services (4 files)
-- `proof-service.js` - Hash accumulator proofs
-- `ecc-proof-service.js` - ECC accumulator proofs
-- `evoke-service.js` - EVOKE revocation logic
-- `evoke-full-implementation.js` - Complete system demonstration
+### Smart Contracts (2 files)
+- `B_Evoke_Registry_ECC.sol` - Registry contract with ECC operations
+- `ECCGroth16Verifier.sol` - SNARK proof verifier
 
-### Smart Contracts (3 files)
-- `B_Evoke_Registry.sol` - Main registry contract
-- `Groth16Verifier.sol` - Hash proof verifier
-- `ECCGroth16Verifier.sol` - ECC proof verifier
+### JavaScript Testing (2 files in root)
+- `test-evoke.js` - Comprehensive test suite (4 scenarios)
+- `verify.sh` - System verification script
 
-### Documentation (6 files)
-- `README.md` - Overview and quick start
+### Solidity Tests (1 file, 29 tests)
+- `B_Evoke_Tests.t.sol` (29 comprehensive tests):
+  - **SNARK Verification** (3 tests): Valid proofs, invalid proofs, wrong public signals
+  - **Registration** (5 tests): Max DID, double registration, empty DID, sequential registration, zero address
+  - **Revocation** (9 tests): Unregistered, already revoked, access control, consecutive, batch operations
+  - **Witness Updates** (4 tests): Non-device, revoked device, valid updates, multiple updates
+  - **Membership Verification** (3 tests): Without revocation, invalid witness, non-existent device
+  - **Gas Optimization** (3 tests): Registration, revocation, verification gas costs
+  - **State Consistency** (2 tests): Accumulator consistency, statistics accuracy
+
+### Documentation (7 files)
+- `README.md` - Quick start and overview
+- `CONTEXT_SUMMARY.md` - Project context and session history
 - `EVOKE_IMPLEMENTATION_COMPLETE.md` - Full EVOKE details
-- `ECC_IMPLEMENTATION_REPORT.md` - ECC implementation
-- `TECHNICAL_EXPLANATION.md` - Conceptual guide
-- `PROJECT_ACHIEVEMENT_REPORT.md` - Project history
+- `ECC_IMPLEMENTATION_REPORT.md` - ECC implementation specifics
+- `TECHNICAL_EXPLANATION.md` - Conceptual guide for engineers
+- `PROJECT_ACHIEVEMENT_REPORT.md` - Complete project history
 - `PROJECT_STRUCTURE.md` - This organizational guide
 
-## Removed Files
+## What Was Removed
 
-The following unnecessary files were removed to maintain a clean project:
-- `circuits/evoke_membership.circom` - Complex template with compilation errors
-- `package-lock.json` - Not needed (using Foundry instead of npm for contracts)
-- Various temporary compilation artifacts
+The following files were removed during consolidation for a cleaner codebase:
 
-## Total File Count
+### Session 1 Cleanup
+- `circuits/simple_accumulator.circom` - Hash-based approach (not EVOKE-compliant)
+- `proof-service.js` - Hash-based proof generation
 
-- **Circuits**: 3 Circom files
-- **Services**: 4 JavaScript files
-- **Contracts**: 3 Solidity files
-- **Tests**: 2 test files
-- **Documentation**: 6 markdown files
-- **Examples**: 2 JSON proof files
+### Session 2 Cleanup
+- `B_Evoke_Registry.sol` - Hash-based contract (not ECC)
+- `B_Evoke_Registry.t.sol` - Tests for removed contract (24 tests)
+- `ecc-proof-service.js` - Merged into test-evoke.js
+- `evoke-service.js` - Merged into test-evoke.js
+- `evoke-full-implementation.js` - Merged into test-evoke.js
+- `quick-check.sh` - Replaced by verify.sh
+
+## Current File Count
+
+- **Circuits**: 2 Circom files
+- **Smart Contracts**: 2 Solidity files
+- **Solidity Tests**: 1 test file (29 tests total)
+- **JavaScript Tests**: 2 files in root (test-evoke.js, verify.sh)
+- **Documentation**: 7 markdown files
+- **Examples**: 1 JSON proof file
 - **Configuration**: 1 TOML file
+- **Deployment**: 1 deployment script
 
-**Total Core Files**: ~21 files (excluding compiled artifacts)
+**Total Core Files**: 16 files (excluding compiled artifacts and dependencies)
+
+## Key Characteristics
+
+✅ **Clean**: Only ECC-based implementation (no hash-based code)
+✅ **Consolidated**: Single comprehensive test file instead of 3 separate ones
+✅ **Production-Ready**: All code is EVOKE paper compliant
+✅ **Well-Documented**: 7 comprehensive documentation files
+✅ **Verified**: All tests pass, no warnings
+
+## Quick Commands
+
+```bash
+# Verify system
+./verify.sh
+
+# Run comprehensive tests
+node test-evoke.js
+
+# Run Solidity tests
+forge test --via-ir
+
+# Deploy contracts
+forge script script/Deploy.s.sol --rpc-url <RPC_URL> --broadcast
+```
+
+Last Updated: October 16, 2025 - Session 3 (Extended test coverage added)

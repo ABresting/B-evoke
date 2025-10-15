@@ -7,7 +7,7 @@ B-Evoke now implements the complete EVOKE paper functionality with:
 ### 1. ✅ ECC-Based Accumulator
 - **Implementation**: Baby Jubjub curve operations
 - **Files**: `circuits/ecc_accumulator.circom`, `ecc-proof-service.js`
-- **Operation**: `ACC_new = ACC_old + g^element` (real EC math)
+- **Operation**: `ACC_new = ACC_old + g^element` (elliptic curve math)
 - **Constraints**: 1531 for full ECC operations
 - **Proof Generation**: ~700ms
 
@@ -168,8 +168,8 @@ npx snarkjs r1cs info circuits/evoke/evoke_membership_simple.r1cs
 The implementation provides:
 
 1. **Exact EVOKE Behavior**: All core functions from the paper are implemented
-2. **Real Cryptography**: Actual ECC operations on Baby Jubjub curve
-3. **SNARK Proofs**: Real zero-knowledge proofs for membership
+2. **Cryptographically Sound**: ECC operations on Baby Jubjub curve
+3. **SNARK Proofs**: Zero-knowledge proofs for membership
 4. **Efficient Updates**: Witness management with O(n) complexity
 5. **Production Ready**: Complete circuits, trusted setup, and verification
 

@@ -1,0 +1,21 @@
+# Build artifacts
+cache/
+out/
+broadcast/
+
+# Dependencies
+node_modules/
+lib/
+
+# Environment
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Project specific
+CONTEXT_SUMMARY.md

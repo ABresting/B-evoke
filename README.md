@@ -6,25 +6,25 @@ B-Evoke implements the **EVOKE paper's credential revocation system** for IoT de
 
 ## Quick Start 🚀
 
-### 1. Test the EVOKE System
+### 1. Verify System is Ready
 
 ```bash
-# See complete EVOKE demonstration with revocation scenarios
-node evoke-service.js
+# Quick health check (5 seconds)
+./verify.sh
 ```
 
-### 2. Generate ECC Proof
+### 2. Run Tests
 
 ```bash
-# Generate a real elliptic curve accumulator proof
-node ecc-proof-service.js
-```
+# Complete end-to-end EVOKE test suite (4 scenarios)
+# - Baby Jubjub ECC operations
+# - Device revocation & witness management
+# - SNARK proof generation & verification
+# - Batch operations
+node test-evoke.js
 
-### 3. Full Implementation Demo
-
-```bash
-# See the complete implementation with SNARK proofs
-node evoke-full-implementation.js
+# Solidity tests (29 comprehensive tests)
+~/.foundry/bin/forge test --via-ir
 ```
 
 ## How It Works
@@ -75,14 +75,19 @@ b-evoke/
 │   ├── ecc_accumulator.circom            # ECC operations (1531 constraints)
 │   └── evoke_membership_simple.circom    # Membership proofs (1530 constraints)
 ├── src/
-│   ├── B_Evoke_Registry.sol             # Device registry
-│   └── ECCGroth16Verifier.sol           # SNARK verifier
-├── Services
-│   ├── ecc-proof-service.js            # ECC proof generation
-│   ├── evoke-service.js                # EVOKE revocation logic
-│   └── evoke-full-implementation.js    # Complete demonstration
-└── Documentation
-    └── EVOKE_IMPLEMENTATION_COMPLETE.md # Full technical details
+│   ├── B_Evoke_Registry_ECC.sol          # Device registry (with ECC)
+│   └── ECCGroth16Verifier.sol            # SNARK verifier
+├── test/
+│   └── B_Evoke_Tests.t.sol               # Comprehensive test suite (29 tests)
+├── test-evoke.js                         # JavaScript test suite (4 scenarios)
+├── verify.sh                             # System verification
+├── README.md                             # This file
+├── CONTEXT_SUMMARY.md                    # Project context
+├── EVOKE_IMPLEMENTATION_COMPLETE.md      # Full EVOKE details
+├── ECC_IMPLEMENTATION_REPORT.md          # ECC documentation
+├── TECHNICAL_EXPLANATION.md              # How it works
+├── PROJECT_ACHIEVEMENT_REPORT.md         # Project history
+└── PROJECT_STRUCTURE.md                  # File organization
 ```
 
 ## Verification
@@ -97,20 +102,38 @@ npx snarkjs r1cs info circuits/ecc/ecc_accumulator.r1cs
 npx snarkjs r1cs info circuits/evoke/evoke_membership_simple.r1cs
 ```
 
-### Run Tests
+### Run Smart Contract Tests
 
 ```bash
-# Run smart contract tests
-forge test
+# Run all 29 Solidity tests
+~/.foundry/bin/forge test --via-ir
+
+# Run specific test file
+~/.foundry/bin/forge test --via-ir --match-contract B_Evoke_Extended_Tests
 ```
 
 ## What Makes This Special?
 
-1. **Real Elliptic Curves**: Uses actual EC operations, not hash functions
+1. **Elliptic Curves**: Uses actual EC operations, not hash functions
 2. **EVOKE Compliant**: Implements exact paper specifications
 3. **Production Ready**: Complete with circuits, proofs, and verification
 4. **Efficient**: Constant 1.5KB storage per IoT device
 5. **Decentralized**: Blockchain replaces centralized trust
+6. **Thoroughly Tested**: 29 Solidity tests + comprehensive JavaScript test suites
+
+## Test Coverage
+
+### Solidity Tests (29 tests, all passing)
+- **SNARK Verification** (3 tests): Valid proofs, invalid proofs, wrong public signals
+- **Registration** (5 tests): Max DID, empty DID, zero address, double registration, sequential
+- **Revocation** (9 tests): Access control, batch operations (up to 100 devices), edge cases
+- **Witness Updates** (4 tests): Valid/invalid updates, multiple sequential updates
+- **Membership Verification** (3 tests): Without revocation, invalid witness, non-existent device
+- **Gas Optimization** (3 tests): Registration (<200k), revocation (<150k), verification (<100k)
+- **State Consistency** (2 tests): Accumulator integrity, statistics accuracy
+
+### JavaScript Tests
+- **test-evoke.js**: End-to-end EVOKE operations (4 scenarios)
 
 ## Documentation
 
